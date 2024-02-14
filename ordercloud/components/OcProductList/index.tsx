@@ -1,7 +1,7 @@
 import { BuyerProduct } from "ordercloud-javascript-sdk";
 import { FunctionComponent } from "react";
 import useOcProductList from "@/ordercloud/hooks/useOcProductList";
-import { OcProductListOptions } from "../../redux/ocProductList";
+import { OcProductListOptions } from "@/ordercloud/redux/ocProductList";
 import OcProductCard from "../OcProductCard";
 
 export interface OcProductListProps {

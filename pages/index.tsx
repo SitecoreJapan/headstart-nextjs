@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { useOcSelector } from "../ordercloud/redux/ocStore";
+import { useOcSelector } from "@/ordercloud/redux/ocStore";
 import styles from "../styles/Home.module.css";
 
 const Home: FunctionComponent = () => {

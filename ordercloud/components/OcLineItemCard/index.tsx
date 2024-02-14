@@ -9,7 +9,10 @@ import {
 } from "react";
 import { useDispatch } from "react-redux";
 import useOcProduct from "@/ordercloud/hooks/useOcProduct";
-import { removeLineItem, updateLineItem } from "../../redux/ocCurrentOrder";
+import {
+  removeLineItem,
+  updateLineItem,
+} from "@/ordercloud/redux/ocCurrentOrder";
 import OcQuantityInput from "../OcQuantityInput";
 
 interface OcLineItemCardProps {

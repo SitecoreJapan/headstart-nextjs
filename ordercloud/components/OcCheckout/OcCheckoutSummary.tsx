@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo } from "react";
-import { useOcSelector } from "../../redux/ocStore";
-import formatPrice from "../../utils/formatPrice";
+import { useOcSelector } from "@/ordercloud/redux/ocStore";
+import formatPrice from "@/ordercloud/utils/formatPrice";
 
 const OcCheckoutSummary: FunctionComponent = () => {
   const { order, shipEstimateResponse, payments } = useOcSelector(

@@ -10,9 +10,9 @@ import {
 } from "react";
 import { OcCheckoutStepProps } from ".";
 import useOcCurrentOrder from "@/ordercloud/hooks/useOcCurrentOrder";
-import { addPayment, removePayment } from "../../redux/ocCurrentOrder";
-import { useOcDispatch } from "../../redux/ocStore";
-import formatPrice from "../../utils/formatPrice";
+import { addPayment, removePayment } from "@/ordercloud/redux/ocCurrentOrder";
+import { useOcDispatch } from "@/ordercloud/redux/ocStore";
+import formatPrice from "@/ordercloud/utils/formatPrice";
 
 const OcCheckoutPayment: FunctionComponent<OcCheckoutStepProps> = ({
   onNext,

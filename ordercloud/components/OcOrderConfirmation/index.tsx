@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { useOcSelector } from "../../redux/ocStore";
+import { useOcSelector } from "@/ordercloud/redux/ocStore";
 
 interface OcOrderConfirmationProps {
   orderId: string;

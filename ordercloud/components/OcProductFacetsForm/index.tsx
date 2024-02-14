@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useOcSelector } from "../../redux/ocStore";
+import { useOcSelector } from "@/ordercloud/redux/ocStore";
 import OcProductFacet from "./OcProductFacet";
 
 export interface OcProductFacetsFormProps {

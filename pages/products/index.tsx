@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { BuyerProduct, Filters } from "ordercloud-javascript-sdk";
 import { FunctionComponent, useCallback } from "react";
-import OcProductCard from "../../ordercloud/components/OcProductCard";
-import OcProductFacetForm from "../../ordercloud/components/OcProductFacetsForm";
-import OcProductList from "../../ordercloud/components/OcProductList";
+import OcProductCard from "@/ordercloud/components/OcProductCard";
+import OcProductFacetForm from "@/ordercloud/components/OcProductFacetsForm";
+import OcProductList from "@/ordercloud/components/OcProductList";
 import useNextRouterMapping, {
   NextQueryMap,
-} from "../../ordercloud/hooks/useNextRouterMapping";
+} from "@/ordercloud/hooks/useNextRouterMapping";
 
 const queryMap: NextQueryMap = {
   search: "s",

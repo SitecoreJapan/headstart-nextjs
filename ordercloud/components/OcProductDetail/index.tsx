@@ -7,9 +7,12 @@ import {
   useState,
 } from "react";
 import useOcProductDetail from "@/ordercloud/hooks/useOcProductDetail";
-import { createLineItem, updateLineItem } from "../../redux/ocCurrentOrder";
-import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
-import formatPrice from "../../utils/formatPrice";
+import {
+  createLineItem,
+  updateLineItem,
+} from "@/ordercloud/redux/ocCurrentOrder";
+import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
+import formatPrice from "@/ordercloud/utils/formatPrice";
 import OcQuantityInput from "../OcQuantityInput";
 import OcProductSpecField from "./OcProductSpecField";
 

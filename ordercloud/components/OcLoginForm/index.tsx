@@ -6,8 +6,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import login from "../../redux/ocAuth/login";
-import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
+import login from "@/ordercloud/redux/ocAuth/login";
+import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
 
 interface OcLoginFormProps {
   title?: string;

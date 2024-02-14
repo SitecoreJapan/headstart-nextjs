@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FunctionComponent } from "react";
-import OcOrderConfirmation from "../../ordercloud/components/OcOrderConfirmation";
+import OcOrderConfirmation from "@/ordercloud/components/OcOrderConfirmation";
 
 const OrderConfirmationPage: FunctionComponent = () => {
   const { isReady, query } = useRouter();

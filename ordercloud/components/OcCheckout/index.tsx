@@ -1,10 +1,10 @@
 import { FunctionComponent, useState } from "react";
-import { OcCurrentOrderState } from "../../redux/ocCurrentOrder";
-import OcCheckoutBilling from "./OcCheckoutBilling";
+import { OcCurrentOrderState } from "@/ordercloud/redux/ocCurrentOrder";
 import OcCheckoutPayment from "./OcCheckoutPayment";
 import OcCheckoutReview from "./OcCheckoutReview";
 import OcCheckoutShipping from "./OcCheckoutShipping";
 import OcCheckoutSummary from "./OcCheckoutSummary";
+import OcCheckoutBilling from "./OcCheckoutBilling";
 
 export interface OcCheckoutStepProps {
   onNext: () => void;

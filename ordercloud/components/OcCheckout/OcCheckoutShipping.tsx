@@ -1,7 +1,7 @@
 import { BuyerAddress } from "ordercloud-javascript-sdk";
 import { FunctionComponent, useMemo } from "react";
-import { saveShippingAddress } from "../../redux/ocCurrentOrder";
-import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
+import { saveShippingAddress } from "@/ordercloud/redux/ocCurrentOrder";
+import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
 import OcAddressBook from "../OcAddressBook";
 import OcAddressForm from "../OcAddressForm";
 import OcShipEstimates from "./OcShipEstimates";

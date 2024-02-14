@@ -5,8 +5,8 @@ import { OcCheckoutStepProps } from ".";
 import {
   removeBillingAddress,
   saveBillingAddress,
-} from "../../redux/ocCurrentOrder";
-import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
+} from "@/ordercloud/redux/ocCurrentOrder";
+import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
 import OcAddressBook from "../OcAddressBook";
 import OcAddressForm from "../OcAddressForm";
 

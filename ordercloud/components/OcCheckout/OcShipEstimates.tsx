@@ -13,9 +13,9 @@ import {
 import {
   estimateShipping,
   selectShipMethods,
-} from "../../redux/ocCurrentOrder";
-import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
-import formatPrice from "../../utils/formatPrice";
+} from "@/ordercloud/redux/ocCurrentOrder";
+import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
+import formatPrice from "@/ordercloud/utils/formatPrice";
 
 const useOcCheckoutShipping = () =>
   useOcSelector((s) => {

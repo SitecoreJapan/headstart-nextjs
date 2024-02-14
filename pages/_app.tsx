@@ -1,9 +1,8 @@
 import { AppProps } from "next/app";
 import { ApiRole } from "ordercloud-javascript-sdk";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import OcProvider from "@/ordercloud/redux/ocProvider";
 import "@/styles/globals.css";
-import sitecoreTheme, { toastOptions } from "@sitecore/blok-theme";
 
 const clientId = process.env.NEXT_PUBLIC_OC_CLIENT_ID || "";
 const scope = process.env.NEXT_PUBLIC_OC_SCOPE
