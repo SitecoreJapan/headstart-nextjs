@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { useOcSelector } from "@/ordercloud/redux/ocStore";
+import { Button } from "@nextui-org/button";
 
 const Home: FunctionComponent = () => {
   const user = useOcSelector((s) => s.ocUser.user);
@@ -10,6 +11,9 @@ const Home: FunctionComponent = () => {
         <h1>React Headstart</h1>
 
         <p>OrderCloud shopping experience built on React</p>
+        <div>
+          <Button>Click me</Button>
+        </div>
 
         {user && (
           <pre>

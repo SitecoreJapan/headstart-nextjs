@@ -3,6 +3,7 @@ import { ApiRole } from "ordercloud-javascript-sdk";
 import Layout from "@/components/Layout";
 import OcProvider from "@/ordercloud/redux/ocProvider";
 import "@/styles/globals.css";
+import { NextUIProvider } from "@nextui-org/react";
 
 const clientId = process.env.NEXT_PUBLIC_OC_CLIENT_ID || "";
 const scope = process.env.NEXT_PUBLIC_OC_SCOPE
@@ -25,9 +26,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         },
       }}
     >
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <NextUIProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </NextUIProvider>
     </OcProvider>
   );
 }
