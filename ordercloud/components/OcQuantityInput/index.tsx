@@ -45,6 +45,7 @@ const OcQuantityInput: FunctionComponent<OcQuantityInputProps> = ({
         </select>
       ) : (
         <input
+          className="block flex-1 border-0"
           id={controlId}
           disabled={disabled}
           type="number"

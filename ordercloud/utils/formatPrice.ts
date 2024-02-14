@@ -1,7 +1,7 @@
 export default function formatPrice(amount: number): string {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("ja-JP", {
     style: "currency",
-    currency: "USD",
+    currency: "JPY",
     currencyDisplay: "symbol",
   }).format(amount);
 }

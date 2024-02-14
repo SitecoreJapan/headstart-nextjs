@@ -41,9 +41,6 @@ const ProductListPage: FunctionComponent = () => {
   return (
     isReady && (
       <>
-        <h2>Facets</h2>
-        <OcProductFacetForm onChange={handleFacetChange} />
-        <h2>Products</h2>
         <OcProductList options={options} renderItem={handleRenderItem} />
       </>
     )

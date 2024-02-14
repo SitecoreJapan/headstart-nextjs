@@ -7,7 +7,7 @@ interface OcProductCardProps {
 
 const OcProductCard: FunctionComponent<OcProductCardProps> = ({ product }) => {
   return (
-    <div>
+    <div className="px-6 py-4">
       <p>
         <b>{product.Name}</b>
       </p>
