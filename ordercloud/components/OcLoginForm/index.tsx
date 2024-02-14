@@ -1,57 +1,66 @@
-import { ChangeEvent, FormEvent, FunctionComponent, useCallback, useEffect, useState } from 'react'
-import login from '../../redux/ocAuth/login'
-import { useOcDispatch, useOcSelector } from '../../redux/ocStore'
+import {
+  ChangeEvent,
+  FormEvent,
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import login from "../../redux/ocAuth/login";
+import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
 
 interface OcLoginFormProps {
-  title?: string
-  onLoggedIn: () => void
+  title?: string;
+  onLoggedIn: () => void;
 }
 
 const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
-  title = 'Sign into your account',
+  title = "Sign into your account",
   onLoggedIn,
 }) => {
-  const dispatch = useOcDispatch()
+  const dispatch = useOcDispatch();
 
   const { loading, error, isAnonymous } = useOcSelector((s) => ({
     isAnonymous: s.ocAuth.isAnonymous,
     error: s.ocAuth.error,
     loading: s.ocAuth.loading,
-  }))
+  }));
 
   const [formValues, setFormValues] = useState({
-    identifier: '',
-    password: '',
+    identifier: "",
+    password: "",
     remember: false,
-  })
+  });
 
-  const handleInputChange = (fieldKey: string) => (e: ChangeEvent<HTMLInputElement>) => {
-    setFormValues((v) => ({ ...v, [fieldKey]: e.target.value }))
-  }
+  const handleInputChange =
+    (fieldKey: string) => (e: ChangeEvent<HTMLInputElement>) => {
+      setFormValues((v) => ({ ...v, [fieldKey]: e.target.value }));
+    };
 
-  const handleCheckboxChange = (fieldKey: string) => (e: ChangeEvent<HTMLInputElement>) => {
-    setFormValues((v) => ({ ...v, [fieldKey]: !!e.target.checked }))
-  }
+  const handleCheckboxChange =
+    (fieldKey: string) => (e: ChangeEvent<HTMLInputElement>) => {
+      setFormValues((v) => ({ ...v, [fieldKey]: !!e.target.checked }));
+    };
 
   const handleSubmit = useCallback(
     (e: FormEvent) => {
-      e.preventDefault()
+      e.preventDefault();
       dispatch(
         login({
           username: formValues.identifier,
           password: formValues.password,
           remember: formValues.remember,
         })
-      )
+      );
     },
     [formValues, dispatch]
-  )
+  );
 
   useEffect(() => {
     if (!isAnonymous) {
-      onLoggedIn()
+      onLoggedIn();
     }
-  }, [isAnonymous, onLoggedIn])
+  }, [isAnonymous, onLoggedIn]);
 
   return (
     <form name="ocLoginForm" onSubmit={handleSubmit}>
@@ -65,7 +74,7 @@ const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
           name="identifier"
           placeholder="Enter username"
           value={formValues.identifier}
-          onChange={handleInputChange('identifier')}
+          onChange={handleInputChange("identifier")}
           required
         />
       </label>
@@ -77,7 +86,7 @@ const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
           name="password"
           placeholder="Enter password"
           value={formValues.password}
-          onChange={handleInputChange('password')}
+          onChange={handleInputChange("password")}
           required
         />
       </label>
@@ -87,7 +96,7 @@ const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
           id="remember"
           name="remember"
           checked={formValues.remember}
-          onChange={handleCheckboxChange('remember')}
+          onChange={handleCheckboxChange("remember")}
         />
         Keep me logged in
       </label>
@@ -95,7 +104,7 @@ const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
         Submit
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default OcLoginForm
+export default OcLoginForm;

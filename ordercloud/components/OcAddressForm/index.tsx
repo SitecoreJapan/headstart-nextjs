@@ -1,5 +1,5 @@
-import { isEqual } from 'lodash'
-import { BuyerAddress } from 'ordercloud-javascript-sdk'
+import { isEqual } from "lodash";
+import { BuyerAddress } from "ordercloud-javascript-sdk";
 import {
   ChangeEvent,
   FormEvent,
@@ -8,14 +8,14 @@ import {
   useEffect,
   useMemo,
   useState,
-} from 'react'
-import { EMPTY_ADDRESS } from '../../redux/ocAddressBook'
+} from "react";
+import { EMPTY_ADDRESS } from "@/ordercloud/redux/ocAddressBook";
 
 interface OcAddressFormProps {
-  id: string
-  onSubmit: (address: BuyerAddress) => void
-  onDelete?: (addressId: string) => void
-  address?: BuyerAddress
+  id: string;
+  onSubmit: (address: BuyerAddress) => void;
+  onDelete?: (addressId: string) => void;
+  address?: BuyerAddress;
 }
 
 const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
@@ -24,35 +24,36 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
   onDelete,
   address,
 }) => {
-  const [formValues, setFormValues] = useState(address || EMPTY_ADDRESS)
+  const [formValues, setFormValues] = useState(address || EMPTY_ADDRESS);
 
   useEffect(() => {
-    setFormValues(address || EMPTY_ADDRESS)
-  }, [address])
+    setFormValues(address || EMPTY_ADDRESS);
+  }, [address]);
 
   const handleFormSubmit = useCallback(
     (e: FormEvent) => {
-      e.preventDefault()
-      onSubmit(formValues)
+      e.preventDefault();
+      onSubmit(formValues);
     },
     [onSubmit, formValues]
-  )
+  );
 
   const handleDeleteAddress = useCallback(() => {
-    onDelete(address.ID)
-  }, [onDelete, address])
+    onDelete(address.ID);
+  }, [onDelete, address]);
 
-  const handleInputChange = (field: keyof BuyerAddress) => (e: ChangeEvent<HTMLInputElement>) => {
-    setFormValues((s) => ({ ...s, [field]: e.target.value }))
-  }
+  const handleInputChange =
+    (field: keyof BuyerAddress) => (e: ChangeEvent<HTMLInputElement>) => {
+      setFormValues((s) => ({ ...s, [field]: e.target.value }));
+    };
 
   const handleDiscardChanges = useCallback(() => {
-    setFormValues(address || EMPTY_ADDRESS)
-  }, [address])
+    setFormValues(address || EMPTY_ADDRESS);
+  }, [address]);
 
   const hasChanges = useMemo(() => {
-    return !isEqual(address, formValues)
-  }, [address, formValues])
+    return !isEqual(address, formValues);
+  }, [address, formValues]);
 
   return (
     <form onSubmit={handleFormSubmit}>
@@ -64,7 +65,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_addressName"
           placeholder="Enter a name for your address"
           value={formValues.AddressName}
-          onChange={handleInputChange('AddressName')}
+          onChange={handleInputChange("AddressName")}
         />
       </label>
       <label htmlFor={`${id}_address_companyName`}>
@@ -75,7 +76,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_companyName"
           placeholder="Enter company name"
           value={formValues.CompanyName}
-          onChange={handleInputChange('CompanyName')}
+          onChange={handleInputChange("CompanyName")}
         />
       </label>
       <label htmlFor={`${id}_address_firstName`}>
@@ -86,7 +87,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_firstName"
           placeholder="Enter first name"
           value={formValues.FirstName}
-          onChange={handleInputChange('FirstName')}
+          onChange={handleInputChange("FirstName")}
           required
         />
       </label>
@@ -98,7 +99,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_lastName"
           placeholder="Enter last name"
           value={formValues.LastName}
-          onChange={handleInputChange('LastName')}
+          onChange={handleInputChange("LastName")}
           required
         />
       </label>
@@ -110,7 +111,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_street1"
           placeholder="Enter street address"
           value={formValues.Street1}
-          onChange={handleInputChange('Street1')}
+          onChange={handleInputChange("Street1")}
           required
         />
       </label>
@@ -122,7 +123,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_street2"
           placeholder="Floor, suite, apartment #"
           value={formValues.Street2}
-          onChange={handleInputChange('Street2')}
+          onChange={handleInputChange("Street2")}
         />
       </label>
       <label htmlFor={`${id}_address_city`}>
@@ -133,7 +134,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_city"
           placeholder="Enter city"
           value={formValues.City}
-          onChange={handleInputChange('City')}
+          onChange={handleInputChange("City")}
           required
         />
       </label>
@@ -145,7 +146,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_state"
           placeholder="Enter state"
           value={formValues.State}
-          onChange={handleInputChange('State')}
+          onChange={handleInputChange("State")}
           required
         />
       </label>
@@ -157,7 +158,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_zip"
           placeholder="Enter zip code"
           value={formValues.Zip}
-          onChange={handleInputChange('Zip')}
+          onChange={handleInputChange("Zip")}
           required
         />
       </label>
@@ -169,7 +170,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_country"
           placeholder="Enter two-digit country code"
           value={formValues.Country}
-          onChange={handleInputChange('Country')}
+          onChange={handleInputChange("Country")}
           required
         />
       </label>
@@ -181,20 +182,28 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
           name="address_phone"
           placeholder="Enter 10 digit phone number"
           value={formValues.Phone}
-          onChange={handleInputChange('Phone')}
+          onChange={handleInputChange("Phone")}
         />
       </label>
-      <button type="button" onClick={handleDeleteAddress} disabled={hasChanges || !address.ID}>
+      <button
+        type="button"
+        onClick={handleDeleteAddress}
+        disabled={hasChanges || !address.ID}
+      >
         Delete Address
       </button>
-      <button type="button" onClick={handleDiscardChanges} disabled={!hasChanges}>
+      <button
+        type="button"
+        onClick={handleDiscardChanges}
+        disabled={!hasChanges}
+      >
         Discard Changes
       </button>
       <button type="submit" disabled={!hasChanges}>
-        {address && address.ID ? 'Update Address' : 'Save Address'}
+        {address && address.ID ? "Update Address" : "Save Address"}
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default OcAddressForm
+export default OcAddressForm;

@@ -1,8 +1,8 @@
-import { BuyerProduct } from 'ordercloud-javascript-sdk'
-import { FunctionComponent } from 'react'
+import { BuyerProduct } from "ordercloud-javascript-sdk";
+import { FunctionComponent } from "react";
 
 interface OcProductCardProps {
-  product: BuyerProduct
+  product: BuyerProduct;
 }
 
 const OcProductCard: FunctionComponent<OcProductCardProps> = ({ product }) => {
@@ -13,7 +13,7 @@ const OcProductCard: FunctionComponent<OcProductCardProps> = ({ product }) => {
       </p>
       <p>{product.Description}</p>
     </div>
-  )
-}
+  );
+};
 
-export default OcProductCard
+export default OcProductCard;

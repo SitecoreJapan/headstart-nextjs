@@ -1,12 +1,12 @@
-import { xor } from 'lodash'
-import { FunctionComponent, useCallback } from 'react'
+import { xor } from "lodash";
+import { FunctionComponent, useCallback } from "react";
 
 interface OcProductFacetFieldProps {
-  count: number
-  selected: string[]
-  valueId: string
-  value: string
-  onChange: (updated: string[]) => void
+  count: number;
+  selected: string[];
+  valueId: string;
+  value: string;
+  onChange: (updated: string[]) => void;
 }
 
 const OcProductFacetField: FunctionComponent<OcProductFacetFieldProps> = ({
@@ -17,8 +17,8 @@ const OcProductFacetField: FunctionComponent<OcProductFacetFieldProps> = ({
   onChange,
 }) => {
   const handleCheckboxChange = useCallback(() => {
-    onChange(xor(selected, [value]))
-  }, [selected, onChange, value])
+    onChange(xor(selected, [value]));
+  }, [selected, onChange, value]);
 
   return (
     <label htmlFor={valueId}>
@@ -27,10 +27,10 @@ const OcProductFacetField: FunctionComponent<OcProductFacetFieldProps> = ({
         type="checkbox"
         checked={selected.includes(value)}
         onChange={handleCheckboxChange}
-      />{' '}
+      />{" "}
       {`${value} (${count})`}
     </label>
-  )
-}
+  );
+};
 
-export default OcProductFacetField
+export default OcProductFacetField;

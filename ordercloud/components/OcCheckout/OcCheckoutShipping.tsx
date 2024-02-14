@@ -1,37 +1,44 @@
-import { BuyerAddress } from 'ordercloud-javascript-sdk'
-import { FunctionComponent, useMemo } from 'react'
-import { saveShippingAddress } from '../../redux/ocCurrentOrder'
-import { useOcDispatch, useOcSelector } from '../../redux/ocStore'
-import OcAddressBook from '../OcAddressBook'
-import OcAddressForm from '../OcAddressForm'
-import OcShipEstimates from './OcShipEstimates'
-import { OcCheckoutStepProps } from './index'
+import { BuyerAddress } from "ordercloud-javascript-sdk";
+import { FunctionComponent, useMemo } from "react";
+import { saveShippingAddress } from "../../redux/ocCurrentOrder";
+import { useOcDispatch, useOcSelector } from "../../redux/ocStore";
+import OcAddressBook from "../OcAddressBook";
+import OcAddressForm from "../OcAddressForm";
+import OcShipEstimates from "./OcShipEstimates";
+import { OcCheckoutStepProps } from "./index";
 
-const OcCheckoutShipping: FunctionComponent<OcCheckoutStepProps> = ({ onNext, onPrev }) => {
-  const dispatch = useOcDispatch()
+const OcCheckoutShipping: FunctionComponent<OcCheckoutStepProps> = ({
+  onNext,
+  onPrev,
+}) => {
+  const dispatch = useOcDispatch();
 
   const { initialized, order, lineItems, user } = useOcSelector((s) => ({
     initialized: s.ocCurrentOrder.initialized,
     order: s.ocCurrentOrder.order,
     lineItems: s.ocCurrentOrder.lineItems,
     user: s.ocUser.user,
-  }))
+  }));
 
   const handleSetShippingAddress = (address: Partial<BuyerAddress>) => {
-    console.log('address', address)
-    dispatch(saveShippingAddress(address))
-  }
+    console.log("address", address);
+    dispatch(saveShippingAddress(address));
+  };
 
   const currentShippingAddress = useMemo(() => {
     if (initialized && lineItems && lineItems.length) {
-      return lineItems[0].ShippingAddress
+      return lineItems[0].ShippingAddress;
     }
-    return {}
-  }, [initialized, lineItems])
+    return {};
+  }, [initialized, lineItems]);
 
   const showAddressBook = useMemo(() => {
-    return user && user.AvailableRoles && user.AvailableRoles.includes('MeAddressAdmin')
-  }, [user])
+    return (
+      user &&
+      user.AvailableRoles &&
+      user.AvailableRoles.includes("MeAddressAdmin")
+    );
+  }, [user]);
 
   return initialized && order ? (
     <div>
@@ -56,7 +63,7 @@ const OcCheckoutShipping: FunctionComponent<OcCheckoutStepProps> = ({ onNext, on
         Billing
       </button>
     </div>
-  ) : null
-}
+  ) : null;
+};
 
-export default OcCheckoutShipping
+export default OcCheckoutShipping;

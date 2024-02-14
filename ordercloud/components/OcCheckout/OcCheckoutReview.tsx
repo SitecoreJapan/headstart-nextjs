@@ -1,22 +1,22 @@
-import { FunctionComponent, useCallback } from 'react'
-import { OcCheckoutStepProps } from '.'
-import { OcCurrentOrderState, submitOrder } from '../../redux/ocCurrentOrder'
-import { useOcDispatch } from '../../redux/ocStore'
-import OcLineItemList from '../OcLineItemList'
-import OcCheckoutSummary from './OcCheckoutSummary'
+import { FunctionComponent, useCallback } from "react";
+import { OcCheckoutStepProps } from ".";
+import { OcCurrentOrderState, submitOrder } from "../../redux/ocCurrentOrder";
+import { useOcDispatch } from "../../redux/ocStore";
+import OcLineItemList from "../OcLineItemList";
+import OcCheckoutSummary from "./OcCheckoutSummary";
 
 interface OcCheckoutReviewProps extends OcCheckoutStepProps {
-  onOrderSubmitted: (orderId: string) => void
+  onOrderSubmitted: (orderId: string) => void;
 }
 
 const OcCheckoutReview: FunctionComponent<OcCheckoutReviewProps> = ({
   onPrev,
   onOrderSubmitted,
 }) => {
-  const dispatch = useOcDispatch()
+  const dispatch = useOcDispatch();
   const handleSubmitOrder = useCallback(async () => {
-    await dispatch(submitOrder(onOrderSubmitted))
-  }, [dispatch, onOrderSubmitted])
+    await dispatch(submitOrder(onOrderSubmitted));
+  }, [dispatch, onOrderSubmitted]);
 
   return (
     <div>
@@ -30,7 +30,7 @@ const OcCheckoutReview: FunctionComponent<OcCheckoutReviewProps> = ({
         Submit Order
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default OcCheckoutReview
+export default OcCheckoutReview;

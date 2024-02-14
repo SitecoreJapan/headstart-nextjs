@@ -1,19 +1,19 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { FunctionComponent } from 'react'
-import OcProductDetail from '../../ordercloud/components/OcProductDetail'
-import { useOcSelector } from '../../ordercloud/redux/ocStore'
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { FunctionComponent } from "react";
+import OcProductDetail from "../../ordercloud/components/OcProductDetail";
+import { useOcSelector } from "../../ordercloud/redux/ocStore";
 
 const ProductPage: FunctionComponent = () => {
-  const { isReady, query, push } = useRouter()
+  const { isReady, query, push } = useRouter();
 
   const productName = useOcSelector(
     (s) => s.ocProductDetail.product && s.ocProductDetail.product.Name
-  )
+  );
 
   const handleLineItemUpdated = () => {
-    push('/cart')
-  }
+    push("/cart");
+  };
 
   return (
     <>
@@ -30,7 +30,7 @@ const ProductPage: FunctionComponent = () => {
         <h1>Loading</h1>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ProductPage
+export default ProductPage;

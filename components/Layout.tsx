@@ -1,18 +1,20 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { FunctionComponent } from 'react'
-import logout from '../ordercloud/redux/ocAuth/logout'
-import { useOcDispatch, useOcSelector } from '../ordercloud/redux/ocStore'
+import Head from "next/head";
+import Link from "next/link";
+import { FunctionComponent } from "react";
+import logout from "@/ordercloud/redux/ocAuth/logout";
+import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
 
 const Layout: FunctionComponent = ({ children }) => {
-  const dispatch = useOcDispatch()
+  const dispatch = useOcDispatch();
 
   const { user, isAnonymous, loading, lineItemCount } = useOcSelector((s) => ({
     user: s.ocUser.user,
     loading: s.ocAuth.loading,
     isAnonymous: s.ocAuth.isAnonymous,
-    lineItemCount: s.ocCurrentOrder.order ? s.ocCurrentOrder.order.LineItemCount : 0,
-  }))
+    lineItemCount: s.ocCurrentOrder.order
+      ? s.ocCurrentOrder.order.LineItemCount
+      : 0,
+  }));
 
   return (
     <>
@@ -30,16 +32,22 @@ const Layout: FunctionComponent = ({ children }) => {
           {isAnonymous ? (
             <Link href="/login">Login</Link>
           ) : (
-            <button type="button" disabled={loading} onClick={() => dispatch(logout())}>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() => dispatch(logout())}
+            >
               Logout
             </button>
           )}
-          {!isAnonymous && user && <p>{`${user.FirstName} ${user.LastName}`}</p>}
+          {!isAnonymous && user && (
+            <p>{`${user.FirstName} ${user.LastName}`}</p>
+          )}
         </nav>
       </header>
       <main>{children}</main>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
