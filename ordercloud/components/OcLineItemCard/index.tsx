@@ -60,9 +60,7 @@ const OcLineItemCard: FunctionComponent<OcLineItemCardProps> = ({ lineItem, edit
           >
             Remove
           </button>
-          <Link href={`/products/${lineItem.ProductID}?lineitem=${lineItem.ID}`}>
-            <a aria-label="Edit Line Item">Edit</a>
-          </Link>
+          <Link href={`/products/${lineItem.ProductID}?lineitem=${lineItem.ID}`}>Edit</Link>
           {product && (
             <form onSubmit={handleUpdateLineItem}>
               <OcQuantityInput

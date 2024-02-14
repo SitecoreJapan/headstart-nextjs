@@ -24,19 +24,11 @@ const Layout: FunctionComponent = ({ children }) => {
         <h1>React Headstart</h1>
         <p>{`Cart Count ${lineItemCount}`}</p>
         <nav>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-          <Link href="/cart">
-            <a>Cart</a>
-          </Link>
-          <Link href="/products">
-            <a>Products</a>
-          </Link>
+          <Link href="/">Home</Link>
+          <Link href="/cart">Cart</Link>
+          <Link href="/products">Products</Link>
           {isAnonymous ? (
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
+            <Link href="/login">Login</Link>
           ) : (
             <button type="button" disabled={loading} onClick={() => dispatch(logout())}>
               Logout

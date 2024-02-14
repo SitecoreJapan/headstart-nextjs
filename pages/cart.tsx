@@ -13,9 +13,7 @@ const CartPage: FunctionComponent = () => {
         Clear Cart
       </button>
       <OcLineItemList emptyMessage="Your shopping cart is empty" editable />
-      <Link href="/checkout">
-        <a>Checkout</a>
-      </Link>
+      <Link href="/checkout">Checkout</Link>
     </div>
   )
 }
