@@ -9,6 +9,8 @@ import {
 import { useOcDispatch, useOcSelector } from "@/ordercloud/redux/ocStore";
 import OcAddressBook from "../OcAddressBook";
 import OcAddressForm from "../OcAddressForm";
+import { Button, ButtonGroup, Checkbox } from "@nextui-org/react";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const OcCheckoutBilling: FunctionComponent<OcCheckoutStepProps> = ({
   onNext,
@@ -67,17 +69,18 @@ const OcCheckoutBilling: FunctionComponent<OcCheckoutStepProps> = ({
 
   return initialized && order ? (
     <div>
-      <h2>Billing</h2>
-      <label htmlFor="SameAsShipping">
-        <input
-          type="checkbox"
+      <h2 className="m-10 text-2xl">Billing</h2>
+      <div className="m-10">
+        <Checkbox
           id="SameAsShipping"
           name="SameAsShipping"
           onChange={handleSameAsShippingChange}
           checked={shippingEqualsBilling}
-        />
-        Same as Shipping
-      </label>
+        >
+          Same as Shipping
+        </Checkbox>
+      </div>
+
       {!shippingEqualsBilling &&
         (showAddressBook ? (
           <OcAddressBook
@@ -94,12 +97,19 @@ const OcCheckoutBilling: FunctionComponent<OcCheckoutStepProps> = ({
           />
         ))}
       <hr />
-      <button type="button" onClick={onPrev}>
-        Edit Shipping
-      </button>
-      <button type="button" onClick={onNext}>
-        Payment
-      </button>
+      <div className="m-10">
+        <ButtonGroup>
+          <Button onClick={onPrev} startContent={<MdNavigateBefore />}>
+            Shipping
+          </Button>
+          <Button color="primary">Billing</Button>
+          <Button onClick={onNext} endContent={<MdNavigateNext />}>
+            Payment
+          </Button>
+          <Button isDisabled>Review</Button>
+          <Button isDisabled>Submit Order</Button>
+        </ButtonGroup>
+      </div>
     </div>
   ) : null;
 };

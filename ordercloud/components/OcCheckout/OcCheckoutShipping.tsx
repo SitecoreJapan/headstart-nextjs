@@ -6,6 +6,8 @@ import OcAddressBook from "../OcAddressBook";
 import OcAddressForm from "../OcAddressForm";
 import OcShipEstimates from "./OcShipEstimates";
 import { OcCheckoutStepProps } from "./index";
+import { Button, ButtonGroup } from "@nextui-org/react";
+import { MdNavigateNext } from "react-icons/md";
 
 const OcCheckoutShipping: FunctionComponent<OcCheckoutStepProps> = ({
   onNext,
@@ -42,7 +44,7 @@ const OcCheckoutShipping: FunctionComponent<OcCheckoutStepProps> = ({
 
   return initialized && order ? (
     <div>
-      <h2>Shipping</h2>
+      <h2 className="m-10 text-2xl">Shipping</h2>
       {showAddressBook ? (
         <OcAddressBook
           id="shipping"
@@ -58,10 +60,19 @@ const OcCheckoutShipping: FunctionComponent<OcCheckoutStepProps> = ({
         />
       )}
       <OcShipEstimates />
+
       <hr />
-      <button type="button" onClick={onNext}>
-        Billing
-      </button>
+      <div className="m-10">
+        <ButtonGroup>
+          <Button color="primary">Shipping</Button>
+          <Button endContent={<MdNavigateNext />} onClick={onNext}>
+            Billing
+          </Button>
+          <Button isDisabled>Payment</Button>
+          <Button isDisabled>Review</Button>
+          <Button isDisabled>Submit Order</Button>
+        </ButtonGroup>
+      </div>
     </div>
   ) : null;
 };

@@ -13,6 +13,8 @@ import useOcCurrentOrder from "@/ordercloud/hooks/useOcCurrentOrder";
 import { addPayment, removePayment } from "@/ordercloud/redux/ocCurrentOrder";
 import { useOcDispatch } from "@/ordercloud/redux/ocStore";
 import formatPrice from "@/ordercloud/utils/formatPrice";
+import { Button, ButtonGroup } from "@nextui-org/button";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const OcCheckoutPayment: FunctionComponent<OcCheckoutStepProps> = ({
   onNext,
@@ -56,44 +58,60 @@ const OcCheckoutPayment: FunctionComponent<OcCheckoutStepProps> = ({
 
   return (
     <div>
-      <h2>Payment</h2>
-      <h3>{`Amount Due ${formatPrice(amountDue)}`}</h3>
+      <h2 className="m-10 text-2xl">Payment</h2>
+      <p className="m-10">{`Amount Due ${formatPrice(amountDue)}`}</p>
       {payments &&
         payments.map((p) => (
           <div key={p.ID}>
-            <p>
-              {p.Type}
-              <b>{` ${formatPrice(p.Amount)}`}</b>
-            </p>
-            <button type="button" onClick={handleRemovePayment(p.ID)}>
-              Remove Payment
-            </button>
+            <div className="m-10">
+              <p>
+                {p.Type}
+                <b>{` ${formatPrice(p.Amount)}`}</b>
+              </p>
+              <button type="button" onClick={handleRemovePayment(p.ID)}>
+                Remove Payment
+              </button>
+            </div>
           </div>
         ))}
-      <form id="checkout_payment" onSubmit={handleAddPayment}>
-        <label htmlFor="checkout_pending_payment">
-          Payment Amount
-          <input
-            id="checkout_pending_payment"
-            type="number"
-            max={amountDue}
-            min="1"
-            value={pendingPayment}
-            step="0.01"
-            onChange={handlePendingPaymentChange}
-          />
-        </label>
-        <button type="submit" disabled={!amountDue}>
-          Add Payment
-        </button>
-      </form>
+      <div className="m-10">
+        <form id="checkout_payment" onSubmit={handleAddPayment}>
+          <label htmlFor="checkout_pending_payment">
+            Payment Amount :{" "}
+            <input
+              id="checkout_pending_payment"
+              type="number"
+              max={amountDue}
+              min="1"
+              value={pendingPayment}
+              step="0.01"
+              onChange={handlePendingPaymentChange}
+            />
+          </label>
+          <br />
+          <button type="submit" disabled={!amountDue}>
+            Add Payment
+          </button>
+        </form>
+      </div>
       <hr />
-      <button type="button" onClick={onPrev}>
-        Edit Billing
-      </button>
-      <button type="button" onClick={onNext} disabled={!!amountDue}>
-        Review Order
-      </button>
+      <div className="m-10">
+        <ButtonGroup>
+          <Button>Shipping</Button>
+          <Button onClick={onPrev} startContent={<MdNavigateBefore />}>
+            Billing
+          </Button>
+          <Button color="primary">Payment</Button>
+          <Button
+            endContent={<MdNavigateNext />}
+            onClick={onNext}
+            disabled={!!amountDue}
+          >
+            Review
+          </Button>
+          <Button isDisabled>Submit Order</Button>
+        </ButtonGroup>
+      </div>
     </div>
   );
 };
