@@ -1,20 +1,24 @@
-import { AsyncThunk, AsyncThunkPayloadCreator, createAsyncThunk } from '@reduxjs/toolkit'
-import logout from './ocAuth/logout'
-import { logError } from './ocErrors'
-import { OcRootState, OcThunkApi } from './ocStore'
+import {
+  AsyncThunk,
+  AsyncThunkPayloadCreator,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
+import logout from "./ocAuth/logout";
+import { logError } from "./ocErrors";
+import { OcRootState, OcThunkApi } from "./ocStore";
 
 function getDescendantProp(obj, desc: string) {
-  const arr = desc.split('.')
-  let result = obj
+  const arr = desc.split(".");
+  let result = obj;
   while (arr.length) {
-    result = result[arr.shift()]
+    result = result[arr.shift()];
   }
-  return result
+  return result;
 }
 
 export interface OcThrottle {
-  location: keyof OcRootState
-  property: string
+  location: keyof OcRootState;
+  property: string;
 }
 
 export function createOcAsyncThunk<Returned, ThunkArg = void>(
@@ -26,32 +30,32 @@ export function createOcAsyncThunk<Returned, ThunkArg = void>(
     typePrefix,
     async (args, thunkAPI) => {
       try {
-        return await payloadCreator(args, thunkAPI) as any
+        return (await payloadCreator(args, thunkAPI)) as any;
       } catch (err) {
         if (err.isOrderCloudError) {
           switch (err.status) {
             case 401:
-              thunkAPI.dispatch(logout())
-              break
+              thunkAPI.dispatch(logout());
+              break;
             default:
-              thunkAPI.dispatch(logError(err))
-              break
+              thunkAPI.dispatch(logError(err));
+              break;
           }
         }
-        throw err
+        throw err;
       }
     },
     {
       condition: (arg, api) => {
         if (throttle) {
-          const state = api.getState()[throttle.location]
-          const isThrottled = getDescendantProp(state, throttle.property)
-          if (typeof isThrottled === 'boolean' && isThrottled) {
-            return false
+          const state = api.getState()[throttle.location];
+          const isThrottled = getDescendantProp(state, throttle.property);
+          if (typeof isThrottled === "boolean" && isThrottled) {
+            return false;
           }
         }
-        return true
+        return true;
       },
     }
-  )
+  );
 }
